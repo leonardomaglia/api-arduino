@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "dOLMETpxqSwZnXmTZ/f9Z7QgS+gFo16Yz5akYq4giSE=",
+  "Source": "api-arduino",
+  "BasePath": "_content/api-arduino",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
