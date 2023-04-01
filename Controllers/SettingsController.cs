@@ -2,30 +2,32 @@ using api_arduino.Interfaces;
 using api_arduino.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace api_arduino.Controllers;
-
-[ApiController]
-[Route("[controller]")]
-public class SettingsController : ControllerBase
+namespace api_arduino.Controllers
 {
-    private readonly ISettingsService _settingsService;
-
-    public SettingsController(ISettingsService settingsService)
+    [ApiController]
+    [Route("[controller]")]
+    public class SettingsController : ControllerBase
     {
-        _settingsService = settingsService;
-    }
+        private readonly ISettingsService _settingsService;
 
-    [HttpGet]
-    public async Task<IActionResult> Get()
-    {
-        var result = await _settingsService.GetSettings("deviceId");
+        public SettingsController(ISettingsService settingsService)
+        {
+            _settingsService = settingsService;
+        }
 
-        return base.Ok(result);
-    }
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            string result = await _settingsService.GetSettings("deviceId");
 
-    [HttpPost]
-    public async Task<IActionResult> Save([FromBody] SaveSettingsDTO dto)
-    {
-        return Ok();
+            return base.Ok(result);
+        }
+
+        [HttpPost("{deviceId}")]
+        public async Task<IActionResult> Save([FromRoute] string deviceId, [FromBody] SaveSettingsDTO dto)
+        {
+            await _settingsService.SaveSettings(deviceId, dto);
+            return Ok();
+        }
     }
 }

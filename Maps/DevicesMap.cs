@@ -19,8 +19,8 @@ namespace api_arduino.Maps
             builder.Property(x => x.Name)
                 .IsRequired();
 
-            builder.Property(x => x.Port)
-                .IsRequired();
+            // builder.Property(x => x.Port)
+            //     .IsRequired();
         }
     }
 }
