@@ -22,5 +22,12 @@ namespace api_arduino.Controllers
 
             return base.Ok(result);
         }
+
+        [HttpGet("humidity/trigger/{deviceId}")]
+        public async Task<IActionResult> TriggerHumidity([FromRoute] string deviceId)
+        {
+            await _deviceService.TriggerHumidity(deviceId);
+            return base.Ok();
+        }
     }
 }

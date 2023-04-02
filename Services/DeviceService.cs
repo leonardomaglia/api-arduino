@@ -34,6 +34,25 @@ namespace api_arduino.Services
             }
         }
 
+        public async Task TriggerHumidity(string deviceId)
+        {
+            var device = CreateDevice(deviceId);
+
+            if (device.IsOpen is false)
+            {
+                try
+                {
+                    device.Open();
+                    device.Write("");
+                    device.Close();
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Erro ao se conectar com o dispositivo. {ex.InnerException}");
+                }
+            }
+        }
+
         private SerialPort CreateDevice(string deviceId)
         {
             return new SerialPort
