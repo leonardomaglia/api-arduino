@@ -13,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Services
+builder.Services.AddScoped<IDeviceService, DeviceService>();
 builder.Services.AddScoped<ISettingsService, SettingsService>();
 
 // CORS
