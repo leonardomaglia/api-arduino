@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hoGcxXMqec8dQiDRRxtUhxnGG5cftjbV78jBBxkVNu0ql47lUXbLVFifFIa4T2772nasqefjvX4V0+dO+DLxcg==",
+  "dgSpecHash": "a/IVNuIr0iCzSpNjJJ8bO3LwFF5crVg/3DjRpu2Zu/WPTqrrR9K5nnWhaoFubmLpHWDZEuN4KBquajIRbmkEdg==",
   "success": true,
   "projectFilePath": "/home/leonardomaglia/Projetos/Fatec/api-arduino/api-arduino.csproj",
   "expectedPackageFiles": [
@@ -21,10 +21,17 @@
     "/home/leonardomaglia/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/home/leonardomaglia/.nuget/packages/mysqlconnector/2.2.5/mysqlconnector.2.2.5.nupkg.sha512",
     "/home/leonardomaglia/.nuget/packages/pomelo.entityframeworkcore.mysql/7.0.0/pomelo.entityframeworkcore.mysql.7.0.0.nupkg.sha512",
+    "/home/leonardomaglia/.nuget/packages/runtime.linux-arm.runtime.native.system.io.ports/7.0.0/runtime.linux-arm.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "/home/leonardomaglia/.nuget/packages/runtime.linux-arm64.runtime.native.system.io.ports/7.0.0/runtime.linux-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "/home/leonardomaglia/.nuget/packages/runtime.linux-x64.runtime.native.system.io.ports/7.0.0/runtime.linux-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "/home/leonardomaglia/.nuget/packages/runtime.native.system.io.ports/7.0.0/runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "/home/leonardomaglia/.nuget/packages/runtime.osx-arm64.runtime.native.system.io.ports/7.0.0/runtime.osx-arm64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
+    "/home/leonardomaglia/.nuget/packages/runtime.osx-x64.runtime.native.system.io.ports/7.0.0/runtime.osx-x64.runtime.native.system.io.ports.7.0.0.nupkg.sha512",
     "/home/leonardomaglia/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "/home/leonardomaglia/.nuget/packages/swashbuckle.aspnetcore.swagger/6.5.0/swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "/home/leonardomaglia/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
     "/home/leonardomaglia/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.5.0/swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512",
+    "/home/leonardomaglia/.nuget/packages/system.io.ports/7.0.0/system.io.ports.7.0.0.nupkg.sha512",
     "/home/leonardomaglia/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
