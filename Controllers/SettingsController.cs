@@ -16,15 +16,15 @@ namespace api_arduino.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] string deviceId)
         {
-            string result = await _settingsService.GetSettings("deviceId");
+            string result = await _settingsService.GetSettings(deviceId);
 
             return base.Ok(result);
         }
 
-        [HttpPost("{deviceId}")]
-        public async Task<IActionResult> Save([FromRoute] string deviceId, [FromBody] SaveSettingsDTO dto)
+        [HttpPost]
+        public async Task<IActionResult> Save([FromQuery] string deviceId, [FromBody] SaveSettingsDTO dto)
         {
             await _settingsService.SaveSettings(deviceId, dto);
             return Ok();

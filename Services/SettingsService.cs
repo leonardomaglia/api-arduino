@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Threading.Tasks;
 using api_arduino.Interfaces;
@@ -23,6 +24,8 @@ namespace api_arduino.Services
 
         public async Task SaveSettings(string deviceId, SaveSettingsDTO dto)
         {
+            string[] ports = SerialPort.GetPortNames();
+
             var device = _dbContext.Devices
                 .FirstOrDefault(x => x.Name == deviceId);
 

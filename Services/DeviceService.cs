@@ -12,6 +12,17 @@ namespace api_arduino.Services
             _dbContext = dbContext;
         }
 
+        public async Task<bool> Connect(string deviceId)
+        {
+            var device = CreateDevice(deviceId);
+
+            device.Open();
+            bool isOpen = device.IsOpen;
+            device.Close();
+
+            return isOpen;
+        }
+
         public async Task<int> GetHumidity(string deviceId)
         {
             return 350;
@@ -57,8 +68,7 @@ namespace api_arduino.Services
         {
             return new SerialPort
             {
-                PortName = deviceId,
-                BaudRate = 9600
+                PortName = deviceId
             };
         }
     }

@@ -15,16 +15,24 @@ namespace api_arduino.Controllers
             _deviceService = deviceService;
         }
 
-        [HttpGet("humidity/{deviceId}")]
-        public async Task<IActionResult> GetHumidity([FromRoute] string deviceId)
+        [HttpPost("connect")]
+        public async Task<IActionResult> Connect([FromQuery] string deviceId)
+        {
+            var result = await _deviceService.Connect(deviceId);
+
+            return base.Ok(result);
+        }
+
+        [HttpGet("humidity")]
+        public async Task<IActionResult> GetHumidity([FromQuery] string deviceId)
         {
             var result = await _deviceService.GetHumidity(deviceId);
 
             return base.Ok(result);
         }
 
-        [HttpGet("humidity/trigger/{deviceId}")]
-        public async Task<IActionResult> TriggerHumidity([FromRoute] string deviceId)
+        [HttpGet("humidity/trigger")]
+        public async Task<IActionResult> TriggerHumidity([FromQuery] string deviceId)
         {
             await _deviceService.TriggerHumidity(deviceId);
             return base.Ok();
