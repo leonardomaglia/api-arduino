@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/leonardomaglia/Projetos/Fatec/api-arduino/api-arduino.csproj": {}
+    "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj": {}
   },
   "projects": {
-    "/home/leonardomaglia/Projetos/Fatec/api-arduino/api-arduino.csproj": {
+    "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/leonardomaglia/Projetos/Fatec/api-arduino/api-arduino.csproj",
+        "projectUniqueName": "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj",
         "projectName": "api-arduino",
-        "projectPath": "/home/leonardomaglia/Projetos/Fatec/api-arduino/api-arduino.csproj",
-        "packagesPath": "/home/leonardomaglia/.nuget/packages/",
-        "outputPath": "/home/leonardomaglia/Projetos/Fatec/api-arduino/obj/",
+        "projectPath": "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj",
+        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
+        "outputPath": "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/leonardomaglia/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -69,7 +69,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -81,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.116/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }

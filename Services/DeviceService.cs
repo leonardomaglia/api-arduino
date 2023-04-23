@@ -25,51 +25,50 @@ namespace api_arduino.Services
 
         public async Task<int> GetHumidity(string deviceId)
         {
-            return 350;
-
-            // Remover return após testes
             var device = CreateDevice(deviceId);
 
-            if (device.IsOpen is false)
+            try
             {
-                try
-                {
-                    device.Open();
-                    device.Write("");
-                    device.Close();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Erro ao se conectar com o dispositivo. {ex.InnerException}");
-                }
+                device.Write("read_moisture\n");
+                string response = device.ReadLine();
+                int moistureLevel = int.Parse(response);
+
+                device.Close();
+
+                return moistureLevel;
             }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao se conectar com o dispositivo. {ex.InnerException}");
+            }
+
+            return 0;
         }
 
         public async Task TriggerHumidity(string deviceId)
         {
             var device = CreateDevice(deviceId);
 
-            if (device.IsOpen is false)
+            try
             {
-                try
-                {
-                    device.Open();
-                    device.Write("");
-                    device.Close();
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Erro ao se conectar com o dispositivo. {ex.InnerException}");
-                }
+                device.Write("trigger_water_pump\n");
+
+                device.Close();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao se conectar com o dispositivo. {ex.InnerException}");
             }
         }
 
         private SerialPort CreateDevice(string deviceId)
         {
-            return new SerialPort
-            {
-                PortName = deviceId
-            };
+            var device = new SerialPort(deviceId, 9600);
+
+            if (device.IsOpen is false)
+                device.Open();
+
+            return device;
         }
     }
 }
