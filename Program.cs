@@ -1,6 +1,8 @@
 using api_arduino;
 using api_arduino.Interfaces;
 using api_arduino.Services;
+using Hangfire;
+using Hangfire.MySql;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +33,19 @@ builder.Services.AddDbContext<ArduinoDbContext>(
         .EnableDetailedErrors()
         );
 
+builder.Services.AddHangfire(hangfire => {
+    hangfire.UseStorage(
+        new MySqlStorage(connectionString,
+            new MySqlStorageOptions
+            {
+                TablesPrefix = "Hangfire."
+            }
+        )
+    );
+});
+
+builder.Services.AddHangfireServer(options => options.WorkerCount = 1);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -47,5 +62,8 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.UseCors("all");
+
+// Hangfire
+app.UseHangfireDashboard("/jobs");
 
 app.Run();

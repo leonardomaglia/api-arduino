@@ -18,7 +18,7 @@ namespace api_arduino.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] string deviceId)
         {
-            string result = await _settingsService.GetSettings(deviceId);
+            var result = await _settingsService.GetSettings(deviceId);
 
             return base.Ok(result);
         }

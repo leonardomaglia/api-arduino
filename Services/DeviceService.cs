@@ -41,8 +41,6 @@ namespace api_arduino.Services
             {
                 throw new Exception($"Erro ao se conectar com o dispositivo. {ex.InnerException}");
             }
-
-            return 0;
         }
 
         public async Task TriggerHumidity(string deviceId)

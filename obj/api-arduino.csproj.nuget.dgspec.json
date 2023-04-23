@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj": {}
+    "/home/leonardomaglia/Projetos/Fatec/api-arduino/api-arduino.csproj": {}
   },
   "projects": {
-    "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj": {
+    "/home/leonardomaglia/Projetos/Fatec/api-arduino/api-arduino.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj",
+        "projectUniqueName": "/home/leonardomaglia/Projetos/Fatec/api-arduino/api-arduino.csproj",
         "projectName": "api-arduino",
-        "projectPath": "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj",
-        "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\obj\\",
+        "projectPath": "/home/leonardomaglia/Projetos/Fatec/api-arduino/api-arduino.csproj",
+        "packagesPath": "/home/leonardomaglia/.nuget/packages/",
+        "outputPath": "/home/leonardomaglia/Projetos/Fatec/api-arduino/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/leonardomaglia/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -38,6 +38,14 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.7.34, )"
+            },
+            "Hangfire.MySqlStorage": {
+              "target": "Package",
+              "version": "[2.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.4, )"
@@ -69,8 +77,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -82,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.408\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/6.0.116/RuntimeIdentifierGraph.json"
         }
       }
     }

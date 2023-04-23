@@ -3,29 +3,53 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Threading.Tasks;
+using api_arduino.DTOs;
 using api_arduino.Interfaces;
 using api_arduino.Models;
+using Hangfire;
 
 namespace api_arduino.Services
 {
     public class SettingsService : ISettingsService
     {
         private readonly ArduinoDbContext _dbContext;
+        private readonly IDeviceService _deviceService;
 
-        public SettingsService(ArduinoDbContext dbContext)
+        public SettingsService(ArduinoDbContext dbContext, IDeviceService deviceService)
         {
             _dbContext = dbContext;
+            _deviceService = deviceService;
         }
 
-        public async Task<string> GetSettings(string deviceId)
+        public async Task<SettingsDTO> GetSettings(string deviceId)
         {
-            return "bla";
+            var device = _dbContext.Devices
+                .FirstOrDefault(x => x.Name == deviceId);
+
+            if (device == null)
+                return null;
+
+            var settings = _dbContext.Settings
+                .FirstOrDefault(x => x.DeviceId == device.Id);
+
+            var schedules = _dbContext.Schedules
+                .Where(w => w.DeviceId == device.Id)
+                .ToList();
+
+            if (settings != null)
+            {
+                return new SettingsDTO
+                {
+                    HumidityTrigger = settings.HumidityTrigger,
+                    Schedules = schedules.ConvertAll(x => x.Time)
+                };
+            }
+
+            return null;
         }
 
         public async Task SaveSettings(string deviceId, SaveSettingsDTO dto)
         {
-            string[] ports = SerialPort.GetPortNames();
-
             var device = _dbContext.Devices
                 .FirstOrDefault(x => x.Name == deviceId);
 
@@ -61,14 +85,19 @@ namespace api_arduino.Services
             foreach(var schedule in schedules)
             {
                 _dbContext.Schedules.Remove(schedule);
+
+                BackgroundJob.Delete(schedule.JobId);
             }
 
             foreach (var schedule in dto.Schedules)
             {
+                var jobId = BackgroundJob.Schedule(() => _deviceService.TriggerHumidity(deviceId), TimeSpan.Parse(schedule));
+
                 _dbContext.Schedules.Add(new Schedules
                 {
                     DeviceId = device.Id,
-                    Time = schedule
+                    Time = schedule,
+                    JobId = jobId
                 });
             }
 
