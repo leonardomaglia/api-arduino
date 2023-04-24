@@ -5,19 +5,11 @@ namespace api_arduino.Services
 {
     public class DeviceService : IDeviceService
     {
-        private readonly ArduinoDbContext _dbContext;
-
-        public DeviceService(ArduinoDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
         public async Task<bool> Connect(string deviceId)
         {
             var device = CreateDevice(deviceId);
+            var isOpen = device.IsOpen;
 
-            device.Open();
-            bool isOpen = device.IsOpen;
             device.Close();
 
             return isOpen;
@@ -25,17 +17,14 @@ namespace api_arduino.Services
 
         public async Task<int> GetHumidity(string deviceId)
         {
-            var device = CreateDevice(deviceId);
-
             try
             {
-                device.Write("read_moisture\n");
-                string response = device.ReadLine();
-                int moistureLevel = int.Parse(response);
+                var device = CreateDevice(deviceId);
 
-                device.Close();
+                device.Write("read_humidity\n");
+                string humidity = device.ReadLine();
 
-                return moistureLevel;
+                return int.Parse(humidity);
             }
             catch (Exception ex)
             {
@@ -45,13 +34,11 @@ namespace api_arduino.Services
 
         public async Task TriggerHumidity(string deviceId)
         {
-            var device = CreateDevice(deviceId);
-
             try
             {
-                device.Write("trigger_water_pump\n");
+                var device = CreateDevice(deviceId);
 
-                device.Close();
+                device.Write("trigger_water_pump\n");
             }
             catch (Exception ex)
             {

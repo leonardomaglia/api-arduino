@@ -91,6 +91,8 @@ namespace api_arduino.Services
 
             foreach (var schedule in dto.Schedules)
             {
+                var bla = TimeSpan.Parse(schedule);
+
                 var jobId = BackgroundJob.Schedule(() => _deviceService.TriggerHumidity(deviceId), TimeSpan.Parse(schedule));
 
                 _dbContext.Schedules.Add(new Schedules

@@ -22,8 +22,8 @@ builder.Services.AddScoped<ISettingsService, SettingsService>();
 builder.Services.AddCors(o => o.AddPolicy("all", b => b.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod()));
 
 // Database
-var connectionString = "server=localhost;user=root;password=123456;database=arduino";
-var serverVersion = new MySqlServerVersion(new Version(10, 6, 2));
+var connectionString = "server=localhost;user=root;password=123456;database=arduino;Allow User Variables=true;";
+var serverVersion = new MySqlServerVersion(new Version(10, 11, 2));
 
 builder.Services.AddDbContext<ArduinoDbContext>(
     dbContextOptions => dbContextOptions
