@@ -34,7 +34,7 @@ namespace api_arduino.Services
             }
         }
 
-        public async Task TriggerHumidity(string deviceId, int humidityTrigger)
+        public async Task TriggerWaterPump(string deviceId, int humidityTrigger)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace api_arduino.Services
             }
         }
 
-        public async Task TriggerHumidityManually(string deviceId)
+        public async Task TriggerWaterPumpManually(string deviceId)
         {
             try
             {

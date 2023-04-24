@@ -76,7 +76,7 @@ namespace api_arduino.Services
                 _dbContext.Settings.Add(settings);
             }
 
-            RecurringJob.AddOrUpdate(() => _deviceService.TriggerHumidity(deviceId, dto.HumidityTrigger), Cron.MinuteInterval(5));
+            RecurringJob.AddOrUpdate(() => _deviceService.TriggerWaterPump(deviceId, dto.HumidityTrigger), Cron.MinuteInterval(5));
 
             var schedules = _dbContext.Schedules
                 .Where(w => w.DeviceId == device.Id)
@@ -93,7 +93,7 @@ namespace api_arduino.Services
                 var hour = Convert.ToInt32(time[0]);
                 var minute = Convert.ToInt32(time[^1]);
 
-                RecurringJob.AddOrUpdate(() => _deviceService.TriggerHumidityManually(deviceId), Cron.Daily(hour, minute), TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
+                RecurringJob.AddOrUpdate(() => _deviceService.TriggerWaterPumpManually(deviceId), Cron.Daily(hour, minute), TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
 
                 _dbContext.Schedules.Add(new Schedules
                 {
