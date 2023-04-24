@@ -46,6 +46,8 @@ namespace api_arduino.Services
 
         public async Task SaveSettings(string deviceId, SaveSettingsDTO dto)
         {
+            RemoveAllRecurringTasks();
+
             var device = _dbContext.Devices
                 .FirstOrDefault(x => x.Name == deviceId);
 
@@ -74,6 +76,8 @@ namespace api_arduino.Services
                 _dbContext.Settings.Add(settings);
             }
 
+            RecurringJob.AddOrUpdate(() => _deviceService.TriggerHumidity(deviceId, dto.HumidityTrigger), Cron.MinuteInterval(5));
+
             var schedules = _dbContext.Schedules
                 .Where(w => w.DeviceId == device.Id)
                 .ToList();
@@ -81,14 +85,6 @@ namespace api_arduino.Services
             foreach(var schedule in schedules)
             {
                 _dbContext.Schedules.Remove(schedule);
-
-                using (var connection = JobStorage.Current.GetConnection())
-                {
-                    foreach (var recurringJob in connection.GetRecurringJobs())
-                    {
-                        RecurringJob.RemoveIfExists(recurringJob.Id);
-                    }
-                }
             }
 
             foreach (var schedule in dto.Schedules)
@@ -97,7 +93,7 @@ namespace api_arduino.Services
                 var hour = Convert.ToInt32(time[0]);
                 var minute = Convert.ToInt32(time[^1]);
 
-                RecurringJob.AddOrUpdate(() => _deviceService.TriggerHumidity(deviceId), Cron.Daily(hour, minute), TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
+                RecurringJob.AddOrUpdate(() => _deviceService.TriggerHumidityManually(deviceId), Cron.Daily(hour, minute), TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
 
                 _dbContext.Schedules.Add(new Schedules
                 {
@@ -107,6 +103,17 @@ namespace api_arduino.Services
             }
 
             await _dbContext.SaveChangesAsync();
+        }
+
+        private void RemoveAllRecurringTasks()
+        {
+            using (var connection = JobStorage.Current.GetConnection())
+            {
+                foreach (var recurringJob in connection.GetRecurringJobs())
+                {
+                    RecurringJob.RemoveIfExists(recurringJob.Id);
+                }
+            }
         }
     }
 }

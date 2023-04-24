@@ -34,7 +34,7 @@ namespace api_arduino.Controllers
         [HttpGet("humidity/trigger")]
         public async Task<IActionResult> TriggerHumidity([FromQuery] string deviceId)
         {
-            await _deviceService.TriggerHumidity(deviceId);
+            await _deviceService.TriggerHumidityManually(deviceId);
             return base.Ok();
         }
     }

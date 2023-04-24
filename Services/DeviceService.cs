@@ -34,7 +34,28 @@ namespace api_arduino.Services
             }
         }
 
-        public async Task TriggerHumidity(string deviceId)
+        public async Task TriggerHumidity(string deviceId, int humidityTrigger)
+        {
+            try
+            {
+                var humidity = await GetHumidity(deviceId);
+
+                if (humidity <= humidityTrigger)
+                {
+                    var device = CreateDevice(deviceId);
+
+                    device.Write("trigger_pump\n");
+
+                    device.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Erro ao se conectar com o dispositivo. {ex.InnerException}");
+            }
+        }
+
+        public async Task TriggerHumidityManually(string deviceId)
         {
             try
             {
