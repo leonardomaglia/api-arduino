@@ -24,6 +24,8 @@ namespace api_arduino.Services
                 device.Write("read_humidity\n");
                 string humidity = device.ReadLine();
 
+                device.Close();
+
                 return int.Parse(humidity);
             }
             catch (Exception ex)
@@ -38,7 +40,9 @@ namespace api_arduino.Services
             {
                 var device = CreateDevice(deviceId);
 
-                device.Write("trigger_water_pump\n");
+                device.Write("trigger_pump\n");
+
+                device.Close();
             }
             catch (Exception ex)
             {

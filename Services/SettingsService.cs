@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.IO.Ports;
-using System.Linq;
-using System.Threading.Tasks;
 using api_arduino.DTOs;
 using api_arduino.Interfaces;
 using api_arduino.Models;
 using Hangfire;
+using Hangfire.Storage;
 
 namespace api_arduino.Services
 {
@@ -86,20 +82,27 @@ namespace api_arduino.Services
             {
                 _dbContext.Schedules.Remove(schedule);
 
-                BackgroundJob.Delete(schedule.JobId);
+                using (var connection = JobStorage.Current.GetConnection())
+                {
+                    foreach (var recurringJob in connection.GetRecurringJobs())
+                    {
+                        RecurringJob.RemoveIfExists(recurringJob.Id);
+                    }
+                }
             }
 
             foreach (var schedule in dto.Schedules)
             {
-                var bla = TimeSpan.Parse(schedule);
+                var time = schedule.Split(":");
+                var hour = Convert.ToInt32(time[0]);
+                var minute = Convert.ToInt32(time[^1]);
 
-                var jobId = BackgroundJob.Schedule(() => _deviceService.TriggerHumidity(deviceId), TimeSpan.Parse(schedule));
+                RecurringJob.AddOrUpdate(() => _deviceService.TriggerHumidity(deviceId), Cron.Daily(hour, minute), TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
 
                 _dbContext.Schedules.Add(new Schedules
                 {
                     DeviceId = device.Id,
-                    Time = schedule,
-                    JobId = jobId
+                    Time = schedule
                 });
             }
 
