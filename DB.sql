@@ -21,6 +21,3 @@ CREATE TABLE Schedules (
 	
 	FOREIGN KEY (DeviceId) REFERENCES Devices(Id)
 );
-
-ALTER TABLE Schedules 
-ADD COLUMN JobId VARCHAR(255) NOT NULL;

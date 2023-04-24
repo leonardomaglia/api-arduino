@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj": {}
+    "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj": {}
   },
   "projects": {
-    "C:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj": {
+    "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj",
+        "projectUniqueName": "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj",
         "projectName": "api-arduino",
-        "projectPath": "C:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj",
+        "projectPath": "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\api-arduino.csproj",
         "packagesPath": "C:\\Users\\leona\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\obj\\",
+        "outputPath": "c:\\Users\\leona\\OneDrive\\Documentos\\api-arduino\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\leona\\AppData\\Roaming\\NuGet\\NuGet.Config"
